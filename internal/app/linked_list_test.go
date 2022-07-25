@@ -35,7 +35,7 @@ func TestList_Delete(t *testing.T) {
 	assert.Equal(t, 1, list.Length)
 }
 
-func TestList_Find(t *testing.T) {
+func TestList_Find_String(t *testing.T) {
 	list := app.InitList()
 	result := list.Find("123")
 	assert.Equal(t, (*app.Node)(nil), result)
@@ -47,4 +47,18 @@ func TestList_Find(t *testing.T) {
 	list.Add("123")
 	result = list.Find("123")
 	assert.Equal(t, "123", result.Key)
+}
+
+func TestList_Find_Int(t *testing.T) {
+	list := app.InitList()
+	result := list.Find(123)
+	assert.Equal(t, (*app.Node)(nil), result)
+
+	list.Add(123)
+	result = list.Find(123)
+	assert.Equal(t, 123, result.Key)
+
+	list.Add(123)
+	result = list.Find(123)
+	assert.Equal(t, 123, result.Key)
 }
