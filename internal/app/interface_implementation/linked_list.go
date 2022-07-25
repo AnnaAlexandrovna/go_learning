@@ -1,4 +1,4 @@
-package app
+package app_interface
 
 type Node struct {
 	next *Node
