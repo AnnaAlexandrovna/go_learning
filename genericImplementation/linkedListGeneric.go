@@ -1,8 +1,8 @@
 package appGeneric
 
 type Node[T comparable] struct {
-	next *Node[T]
-	Key  T
+	next  *Node[T]
+	Value T
 }
 type List[T comparable] struct {
 	head   *Node[T]
@@ -13,9 +13,9 @@ func NewLinkedList[T comparable]() *List[T] {
 	return &List[T]{}
 }
 
-func (s *List[T]) Add(key T) {
+func (s *List[T]) Add(value T) {
 	el := &Node[T]{
-		Key: key,
+		Value: value,
 	}
 	if s.head == nil {
 		s.head = el
@@ -29,19 +29,19 @@ func (s *List[T]) Add(key T) {
 	s.Length++
 }
 
-func (s *List[T]) Delete(key T) {
+func (s *List[T]) Delete(value T) {
 	if s.head == nil {
 		return
 	}
 	var prev *Node[T]
 	current := s.head
-	if current == s.head && s.Length == 1 && current.Key == key {
+	if current == s.head && s.Length == 1 && current.Value == value {
 		s.head = nil
 		s.Length--
 		return
 	}
 	for current.next != nil {
-		if current.Key == key {
+		if current.Value == value {
 			if current == s.head {
 				s.head = current.next
 			} else {
@@ -55,17 +55,17 @@ func (s *List[T]) Delete(key T) {
 	}
 }
 
-func (s *List[T]) Find(key T) *Node[T] {
+func (s *List[T]) Find(value T) *Node[T] {
 	if s.head == nil {
 		return nil
 	}
 	var foundNode *Node[T]
 	current := s.head
-	if current == s.head && s.Length == 1 && current.Key == key {
+	if current == s.head && s.Length == 1 && current.Value == value {
 		return current
 	}
 	for current.next != nil {
-		if current.Key == key {
+		if current.Value == value {
 			foundNode = current
 			break
 		}

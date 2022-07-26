@@ -1,8 +1,8 @@
 package appInterface
 
 type Node struct {
-	next *Node
-	Key  interface{}
+	next  *Node
+	Value interface{}
 }
 type List struct {
 	head   *Node
@@ -13,9 +13,9 @@ func NewLinkedList() *List {
 	return &List{}
 }
 
-func (s *List) Add(key interface{}) {
+func (s *List) Add(value interface{}) {
 	el := &Node{
-		Key: key,
+		Value: value,
 	}
 	if s.head == nil {
 		s.head = el
@@ -29,19 +29,19 @@ func (s *List) Add(key interface{}) {
 	s.Length++
 }
 
-func (s *List) Delete(key interface{}) {
+func (s *List) Delete(value interface{}) {
 	if s.head == nil {
 		return
 	}
 	var prev *Node
 	current := s.head
-	if current == s.head && s.Length == 1 && current.Key == key {
+	if current == s.head && s.Length == 1 && current.Value == value {
 		s.head = nil
 		s.Length--
 		return
 	}
 	for current.next != nil {
-		if current.Key == key {
+		if current.Value == value {
 			if current == s.head {
 				s.head = current.next
 			} else {
@@ -55,17 +55,17 @@ func (s *List) Delete(key interface{}) {
 	}
 }
 
-func (s *List) Find(key interface{}) *Node {
+func (s *List) Find(value interface{}) *Node {
 	if s.head == nil {
 		return nil
 	}
 	var foundNode *Node
 	current := s.head
-	if current == s.head && s.Length == 1 && current.Key == key {
+	if current == s.head && s.Length == 1 && current.Value == value {
 		return current
 	}
 	for current.next != nil {
-		if current.Key == key {
+		if current.Value == value {
 			foundNode = current
 			break
 		}

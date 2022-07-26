@@ -42,11 +42,11 @@ func TestList_Find_String(t *testing.T) {
 
 	list.Add("123")
 	result = list.Find("123")
-	assert.Equal(t, "123", result.Key)
+	assert.Equal(t, "123", result.Value)
 
 	list.Add("123")
 	result = list.Find("123")
-	assert.Equal(t, "123", result.Key)
+	assert.Equal(t, "123", result.Value)
 }
 
 func TestList_Find_Int(t *testing.T) {
@@ -56,9 +56,9 @@ func TestList_Find_Int(t *testing.T) {
 
 	list.Add(123)
 	result = list.Find(123)
-	assert.Equal(t, 123, result.Key)
+	assert.Equal(t, 123, result.Value)
 
 	list.Add(123)
 	result = list.Find(123)
-	assert.Equal(t, 123, result.Key)
+	assert.Equal(t, 123, result.Value)
 }
