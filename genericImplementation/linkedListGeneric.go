@@ -73,3 +73,20 @@ func (s *List[T]) Find(value T) *Node[T] {
 	}
 	return foundNode
 }
+
+func (s *List[T]) IsCycleInList() bool {
+	if s.head == nil {
+		return false
+	}
+	haveCycle := false
+	current := s.head
+	setOfNodes := make(map[*Node[T]]bool)
+	setOfNodes[s.head] = true
+	for current.next != nil {
+		if setOfNodes[current.next] {
+			return true
+		}
+		current = current.next
+	}
+	return haveCycle
+}

@@ -62,3 +62,11 @@ func TestList_Find_Int(t *testing.T) {
 	result = list.Find(123)
 	assert.Equal(t, 123, result.Value)
 }
+
+func TestList_FindCycle(t *testing.T) {
+	list := appGeneric.NewLinkedList[int]()
+	list.Add(123)
+	list.Add(123)
+	result := list.IsCycleInList()
+	assert.Equal(t, false, result)
+}
