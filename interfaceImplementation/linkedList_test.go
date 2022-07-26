@@ -1,14 +1,14 @@
-package appGeneric_test
+package appInterface_test
 
 import (
-	appGeneric "go-learning/internal/app/genericImplementation"
+	appInterface "go-learning/interfaceImplementation"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func TestList_Add(t *testing.T) {
-	list := appGeneric.InitList[string]()
+	list := appInterface.InitList()
 	assert.Equal(t, 0, list.Length)
 	list.Add("123")
 	assert.Equal(t, 1, list.Length)
@@ -17,7 +17,7 @@ func TestList_Add(t *testing.T) {
 }
 
 func TestList_Delete(t *testing.T) {
-	list := appGeneric.InitList[string]()
+	list := appInterface.InitList()
 	list.Delete("123")
 	assert.Equal(t, 0, list.Length)
 
@@ -36,9 +36,9 @@ func TestList_Delete(t *testing.T) {
 }
 
 func TestList_Find_String(t *testing.T) {
-	list := appGeneric.InitList[string]()
+	list := appInterface.InitList()
 	result := list.Find("123")
-	assert.Equal(t, (*appGeneric.Node[string])(nil), result)
+	assert.Equal(t, (*appInterface.Node)(nil), result)
 
 	list.Add("123")
 	result = list.Find("123")
@@ -50,9 +50,9 @@ func TestList_Find_String(t *testing.T) {
 }
 
 func TestList_Find_Int(t *testing.T) {
-	list := appGeneric.InitList[int]()
+	list := appInterface.InitList()
 	result := list.Find(123)
-	assert.Equal(t, (*appGeneric.Node[int])(nil), result)
+	assert.Equal(t, (*appInterface.Node)(nil), result)
 
 	list.Add(123)
 	result = list.Find(123)
