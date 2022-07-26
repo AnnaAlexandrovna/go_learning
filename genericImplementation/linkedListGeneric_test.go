@@ -70,3 +70,33 @@ func TestList_FindCycle(t *testing.T) {
 	result := list.IsCycleInList()
 	assert.Equal(t, false, result)
 }
+
+func TestList_RevertList(t *testing.T) {
+	list := appGeneric.NewLinkedList[int]()
+	list.Add(1)
+	list.Add(2)
+	list.Add(3)
+	var listElementsArray []interface{}
+	assert.Equal(t, 1, list.Head.Value)
+	current := list.Head
+	for current.Next != nil {
+		listElementsArray = append(listElementsArray, current.Value)
+		current = current.Next
+	}
+	listElementsArray = append(listElementsArray, current.Value)
+	assert.Equal(t, 1, listElementsArray[0])
+	assert.Equal(t, 2, listElementsArray[1])
+	assert.Equal(t, 3, listElementsArray[2])
+	list.RevertList()
+	var revertElementsArray []interface{}
+	current = list.Head
+	for current.Next != nil {
+		revertElementsArray = append(revertElementsArray, current.Value)
+		current = current.Next
+	}
+	revertElementsArray = append(revertElementsArray, current.Value)
+	assert.Equal(t, 3, revertElementsArray[0])
+	assert.Equal(t, 2, revertElementsArray[1])
+	assert.Equal(t, 1, revertElementsArray[2])
+	assert.Equal(t, 3, list.Head.Value)
+}
