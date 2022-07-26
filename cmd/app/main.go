@@ -1,13 +1,13 @@
 package main
 
 import (
-	app_generic "go-learning/internal/app/generic_implementation"
-	app_interface "go-learning/internal/app/interface_implementation"
+	appGeneric "go-learning/internal/app/genericImplementation"
+	appInterface "go-learning/internal/app/interfaceImplementation"
 )
 
 func main() {
-	listInterface := app_interface.InitList()
+	listInterface := appInterface.InitList()
 	listInterface.Add("5")
-	listGeneric := app_generic.InitList[string]()
+	listGeneric := appGeneric.InitList[string]()
 	listGeneric.Add("5")
 }

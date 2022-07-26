@@ -1,4 +1,4 @@
-package app_generic
+package appGeneric
 
 type Node[T comparable] struct {
 	next *Node[T]
