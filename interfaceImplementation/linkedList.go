@@ -1,5 +1,7 @@
 package appInterface
 
+import "reflect"
+
 type Node struct {
 	Next  *Node
 	Value interface{}
@@ -118,15 +120,78 @@ func ConcatSortedLists(list1 *List, list2 *List) *List {
 	for element1 != nil || element2 != nil {
 		if element1 != nil &&
 			(element2 == nil ||
-				element1.Value.(int) < element2.Value.(int)) {
+				compare(element2.Value, element1.Value)) {
 			list.Add(element1.Value)
 			element1 = element1.Next
 		} else if element2 != nil &&
 			(element1 == nil ||
-				element1.Value.(int) >= element2.Value.(int)) {
+				element1.Value == element2.Value ||
+				compare(element1.Value, element2.Value)) {
 			list.Add(element2.Value)
 			element2 = element2.Next
 		}
 	}
 	return list
+}
+
+func compare(value1 interface{}, value2 interface{}) bool {
+	switch reflect.TypeOf(value1).Kind() {
+	case reflect.Int:
+		v1 := reflect.ValueOf(value1).Interface().(int)
+		v2 := reflect.ValueOf(value2).Interface().(int)
+		return v1 > v2
+	case reflect.Int8:
+		v1 := reflect.ValueOf(value1).Interface().(int8)
+		v2 := reflect.ValueOf(value2).Interface().(int8)
+		return v1 > v2
+	case reflect.Int16:
+		v1 := reflect.ValueOf(value1).Interface().(int16)
+		v2 := reflect.ValueOf(value2).Interface().(int16)
+		return v1 > v2
+	case reflect.Int32:
+		v1 := reflect.ValueOf(value1).Interface().(int32)
+		v2 := reflect.ValueOf(value2).Interface().(int32)
+		return v1 > v2
+	case reflect.Int64:
+		v1 := reflect.ValueOf(value1).Interface().(int64)
+		v2 := reflect.ValueOf(value2).Interface().(int64)
+		return v1 > v2
+	case reflect.Uint:
+		v1 := reflect.ValueOf(value1).Interface().(uint)
+		v2 := reflect.ValueOf(value2).Interface().(uint)
+		return v1 > v2
+	case reflect.Uint8:
+		v1 := reflect.ValueOf(value1).Interface().(uint8)
+		v2 := reflect.ValueOf(value2).Interface().(uint8)
+		return v1 > v2
+	case reflect.Uint16:
+		v1 := reflect.ValueOf(value1).Interface().(uint16)
+		v2 := reflect.ValueOf(value2).Interface().(uint16)
+		return v1 > v2
+	case reflect.Uint32:
+		v1 := reflect.ValueOf(value1).Interface().(uint32)
+		v2 := reflect.ValueOf(value2).Interface().(uint32)
+		return v1 > v2
+	case reflect.Uint64:
+		v1 := reflect.ValueOf(value1).Interface().(uint64)
+		v2 := reflect.ValueOf(value2).Interface().(uint64)
+		return v1 > v2
+	case reflect.Float32:
+		v1 := reflect.ValueOf(value1).Interface().(float32)
+		v2 := reflect.ValueOf(value2).Interface().(float32)
+		return v1 > v2
+	case reflect.Float64:
+		v1 := reflect.ValueOf(value1).Interface().(float64)
+		v2 := reflect.ValueOf(value2).Interface().(float64)
+		return v1 > v2
+	case reflect.String:
+		v1 := reflect.ValueOf(value1).Interface().(string)
+		v2 := reflect.ValueOf(value2).Interface().(string)
+		return v1 > v2
+	case reflect.Bool:
+		v1 := reflect.ValueOf(value1).Interface().(bool)
+		return v1
+	default:
+		return false
+	}
 }
