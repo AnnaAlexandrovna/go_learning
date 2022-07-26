@@ -8,7 +8,7 @@ import (
 )
 
 func TestList_Add(t *testing.T) {
-	list := appGeneric.InitList[string]()
+	list := appGeneric.NewLinkedList[string]()
 	assert.Equal(t, 0, list.Length)
 	list.Add("123")
 	assert.Equal(t, 1, list.Length)
@@ -17,7 +17,7 @@ func TestList_Add(t *testing.T) {
 }
 
 func TestList_Delete(t *testing.T) {
-	list := appGeneric.InitList[string]()
+	list := appGeneric.NewLinkedList[string]()
 	list.Delete("123")
 	assert.Equal(t, 0, list.Length)
 
@@ -36,7 +36,7 @@ func TestList_Delete(t *testing.T) {
 }
 
 func TestList_Find_String(t *testing.T) {
-	list := appGeneric.InitList[string]()
+	list := appGeneric.NewLinkedList[string]()
 	result := list.Find("123")
 	assert.Equal(t, (*appGeneric.Node[string])(nil), result)
 
@@ -50,7 +50,7 @@ func TestList_Find_String(t *testing.T) {
 }
 
 func TestList_Find_Int(t *testing.T) {
-	list := appGeneric.InitList[int]()
+	list := appGeneric.NewLinkedList[int]()
 	result := list.Find(123)
 	assert.Equal(t, (*appGeneric.Node[int])(nil), result)
 

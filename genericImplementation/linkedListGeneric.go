@@ -9,7 +9,7 @@ type List[T comparable] struct {
 	Length int
 }
 
-func InitList[T comparable]() *List[T] {
+func NewLinkedList[T comparable]() *List[T] {
 	return &List[T]{}
 }
 
@@ -73,27 +73,3 @@ func (s *List[T]) Find(key T) *Node[T] {
 	}
 	return foundNode
 }
-
-// func compare[T comparable](key1 T, key2 T) bool {
-// 	r := reflect.TypeOf(key1).Kind()
-// 	if r == reflect.Int ||
-// 		r == reflect.Int8 ||
-// 		r == reflect.Int16 ||
-// 		r == reflect.Int32 ||
-// 		r == reflect.Int64 ||
-// 		r == reflect.Float32 ||
-// 		r == reflect.Float64 ||
-// 		r == reflect.String ||
-// 		r == reflect.Bool ||
-// 		r == reflect.Uint ||
-// 		r == reflect.Uint8 ||
-// 		r == reflect.Uint16 ||
-// 		r == reflect.Uint32 ||
-// 		r == reflect.Uint64 {
-// 		v1 := reflect.ValueOf(key1).Interface()
-// 		v2 := reflect.ValueOf(key2).Interface()
-// 		fmt.Println("v1", v1, "v2", v2, v1 == v2)
-// 		return v1 == v2
-// 	}
-// 	return false
-// }

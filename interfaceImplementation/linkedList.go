@@ -9,7 +9,7 @@ type List struct {
 	Length int
 }
 
-func InitList() *List {
+func NewLinkedList() *List {
 	return &List{}
 }
 
