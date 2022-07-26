@@ -69,6 +69,14 @@ func TestList_FindCycle(t *testing.T) {
 	list.Add(123)
 	result := list.IsCycleInList()
 	assert.Equal(t, false, result)
+	head := list.Head
+	current := list.Head
+	for current.Next != nil {
+		current = current.Next
+	}
+	current.Next = head
+	result = list.IsCycleInList()
+	assert.Equal(t, true, result)
 }
 
 func TestList_RevertList(t *testing.T) {
