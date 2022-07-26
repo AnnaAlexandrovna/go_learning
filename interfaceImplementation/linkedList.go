@@ -135,60 +135,60 @@ func ConcatSortedLists(list1 *List, list2 *List) *List {
 }
 
 func compare(value1 interface{}, value2 interface{}) bool {
-	switch reflect.TypeOf(value1).Kind() {
-	case reflect.Int:
+	switch value1.(type) {
+	case int:
 		v1 := reflect.ValueOf(value1).Interface().(int)
 		v2 := reflect.ValueOf(value2).Interface().(int)
 		return v1 > v2
-	case reflect.Int8:
+	case int8:
 		v1 := reflect.ValueOf(value1).Interface().(int8)
 		v2 := reflect.ValueOf(value2).Interface().(int8)
 		return v1 > v2
-	case reflect.Int16:
+	case int16:
 		v1 := reflect.ValueOf(value1).Interface().(int16)
 		v2 := reflect.ValueOf(value2).Interface().(int16)
 		return v1 > v2
-	case reflect.Int32:
+	case int32:
 		v1 := reflect.ValueOf(value1).Interface().(int32)
 		v2 := reflect.ValueOf(value2).Interface().(int32)
 		return v1 > v2
-	case reflect.Int64:
+	case int64:
 		v1 := reflect.ValueOf(value1).Interface().(int64)
 		v2 := reflect.ValueOf(value2).Interface().(int64)
 		return v1 > v2
-	case reflect.Uint:
+	case uint:
 		v1 := reflect.ValueOf(value1).Interface().(uint)
 		v2 := reflect.ValueOf(value2).Interface().(uint)
 		return v1 > v2
-	case reflect.Uint8:
+	case uint8:
 		v1 := reflect.ValueOf(value1).Interface().(uint8)
 		v2 := reflect.ValueOf(value2).Interface().(uint8)
 		return v1 > v2
-	case reflect.Uint16:
+	case uint16:
 		v1 := reflect.ValueOf(value1).Interface().(uint16)
 		v2 := reflect.ValueOf(value2).Interface().(uint16)
 		return v1 > v2
-	case reflect.Uint32:
+	case uint32:
 		v1 := reflect.ValueOf(value1).Interface().(uint32)
 		v2 := reflect.ValueOf(value2).Interface().(uint32)
 		return v1 > v2
-	case reflect.Uint64:
+	case uint64:
 		v1 := reflect.ValueOf(value1).Interface().(uint64)
 		v2 := reflect.ValueOf(value2).Interface().(uint64)
 		return v1 > v2
-	case reflect.Float32:
+	case float32:
 		v1 := reflect.ValueOf(value1).Interface().(float32)
 		v2 := reflect.ValueOf(value2).Interface().(float32)
 		return v1 > v2
-	case reflect.Float64:
+	case float64:
 		v1 := reflect.ValueOf(value1).Interface().(float64)
 		v2 := reflect.ValueOf(value2).Interface().(float64)
 		return v1 > v2
-	case reflect.String:
+	case string:
 		v1 := reflect.ValueOf(value1).Interface().(string)
 		v2 := reflect.ValueOf(value2).Interface().(string)
 		return v1 > v2
-	case reflect.Bool:
+	case bool:
 		v1 := reflect.ValueOf(value1).Interface().(bool)
 		return v1
 	default:
