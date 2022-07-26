@@ -1,15 +1,22 @@
 package appGeneric
 
-type Node[T comparable] struct {
+type Ordered interface {
+	int | int8 | int16 | int32 | int64 |
+		uint | uint8 | uint16 | uint32 |
+		uint64 | uintptr | float32 |
+		float64 | string
+}
+
+type Node[T Ordered] struct {
 	Next  *Node[T]
 	Value T
 }
-type List[T comparable] struct {
+type List[T Ordered] struct {
 	Head   *Node[T]
 	Length int
 }
 
-func NewLinkedList[T comparable]() *List[T] {
+func NewLinkedList[T Ordered]() *List[T] {
 	return &List[T]{}
 }
 
@@ -109,4 +116,24 @@ func (s *List[T]) RevertList() {
 	}
 	current.Next = prev
 	s.Head = current
+}
+
+func ConcatSortedLists[T Ordered](list1 *List[T], list2 *List[T]) *List[T] {
+	element1 := list1.Head
+	element2 := list2.Head
+	list := NewLinkedList[T]()
+	for element1 != nil || element2 != nil {
+		if element1 != nil &&
+			(element2 == nil ||
+				element1.Value < element2.Value) {
+			list.Add(element1.Value)
+			element1 = element1.Next
+		} else if element2 != nil &&
+			(element1 == nil ||
+				element1.Value >= element2.Value) {
+			list.Add(element2.Value)
+			element2 = element2.Next
+		}
+	}
+	return list
 }

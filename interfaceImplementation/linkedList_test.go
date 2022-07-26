@@ -107,3 +107,29 @@ func TestList_RevertList(t *testing.T) {
 	assert.Equal(t, 1, revertElementsArray[2])
 	assert.Equal(t, 3, list.Head.Value)
 }
+
+func TestList_ConcatSortedLists(t *testing.T) {
+	list1 := appInterface.NewLinkedList()
+	list1.Add(5)
+	list1.Add(10)
+	list1.Add(15)
+	list2 := appInterface.NewLinkedList()
+	list2.Add(2)
+	list2.Add(3)
+	list2.Add(20)
+	list := appInterface.ConcatSortedLists(list1, list2)
+	assert.Equal(t, 2, list.Head.Value)
+	var listElementsArray []interface{}
+	current := list.Head
+	for current.Next != nil {
+		listElementsArray = append(listElementsArray, current.Value)
+		current = current.Next
+	}
+	listElementsArray = append(listElementsArray, current.Value)
+	assert.Equal(t, 2, listElementsArray[0])
+	assert.Equal(t, 3, listElementsArray[1])
+	assert.Equal(t, 5, listElementsArray[2])
+	assert.Equal(t, 10, listElementsArray[3])
+	assert.Equal(t, 15, listElementsArray[4])
+	assert.Equal(t, 20, listElementsArray[5])
+}

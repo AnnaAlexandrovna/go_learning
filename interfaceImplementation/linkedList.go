@@ -110,3 +110,23 @@ func (s *List) RevertList() {
 	current.Next = prev
 	s.Head = current
 }
+
+func ConcatSortedLists(list1 *List, list2 *List) *List {
+	element1 := list1.Head
+	element2 := list2.Head
+	list := NewLinkedList()
+	for element1 != nil || element2 != nil {
+		if element1 != nil &&
+			(element2 == nil ||
+				element1.Value.(int) < element2.Value.(int)) {
+			list.Add(element1.Value)
+			element1 = element1.Next
+		} else if element2 != nil &&
+			(element1 == nil ||
+				element1.Value.(int) >= element2.Value.(int)) {
+			list.Add(element2.Value)
+			element2 = element2.Next
+		}
+	}
+	return list
+}
